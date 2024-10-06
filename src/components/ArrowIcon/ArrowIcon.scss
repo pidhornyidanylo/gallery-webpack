@@ -1,53 +1,80 @@
- .circleContainer {
-     margin: auto;
-     margin-top: 40px;
-     position: relative;
-     width: 180px;
-     height: 180px;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     cursor: pointer;
- }
-
- .spinningText {
-     animation: spinText 10s linear infinite;
-     -webkit-animation: spinText 10s linear infinite;
-     transform-origin: center;
+.circleContainer {
+  margin: auto;
+  margin-top: 40px;
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
- .arrowContainerVertical {
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     animation: moveArrow 1s linear infinite;
-     -webkit-animation: moveArrow 1s linear infinite;
- }
+.circleContainerAngled {
+  position: absolute;
+  right: -150px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
 
- @keyframes spinText {
-     from {
-         transform: rotate(0deg);
-     }
+.spinningText {
+  animation: spinText 10s linear infinite;
+  -webkit-animation: spinText 10s linear infinite;
+  transform-origin: center;
+}
 
-     to {
-         transform: rotate(360deg);
-     }
- }
+.arrowContainerVertical {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: moveArrow 1s linear infinite;
+  -webkit-animation: moveArrow 1s linear infinite;
+}
 
- @keyframes moveArrow {
-     from {
-         transform: translate(-50%, -75%);
-         -webkit-transform: translate(-50%, -75%);
-         -moz-transform: translate(-50%, -75%);
-         -ms-transform: translate(-50%, -75%);
-         -o-transform: translate(-50%, -75%);
-     }
+.arrowContainerAngled {
+  position: absolute;
+  top: 54%;
+  left: 45%;
+  transform: translate(-40%, -45%);
+  animation: moveArrowAngle 2s linear infinite;
+  -webkit-animation: moveArrowAngle 2s linear infinite;
+  -webkit-transform: translate(-40%, -45%);
+  -moz-transform: translate(-40%, -45%);
+  -ms-transform: translate(-40%, -45%);
+  -o-transform: translate(-40%, -45%);
+}
 
-     to {
-         transform: translate(-50%, -50%);
-         -webkit-transform: translate(-50%, -50%);
-         -moz-transform: translate(-50%, -50%);
-         -ms-transform: translate(-50%, -50%);
-         -o-transform: translate(-50%, -50%);
-     }
- }
+@keyframes spinText {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveArrow {
+  from {
+    transform: translate(-50%, -75%);
+    -webkit-transform: translate(-50%, -75%);
+    -moz-transform: translate(-50%, -75%);
+    -ms-transform: translate(-50%, -75%);
+    -o-transform: translate(-50%, -75%);
+  }
+
+  to {
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+  }
+}

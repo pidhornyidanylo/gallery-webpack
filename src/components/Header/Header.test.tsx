@@ -7,9 +7,9 @@ describe('Header component', () => {
   it('renders logo', () => {
     render(<Header />);
     const logo = screen.getByRole('heading', {
-      name: /gallery/i 
+      name: /gallery/i
     });
-    expect(logo).toBeInTheDocument(); 
+    expect(logo).toBeInTheDocument();
   });
   it('renders routes path', () => {
     render(<Header />);

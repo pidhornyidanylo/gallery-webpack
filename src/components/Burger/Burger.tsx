@@ -46,7 +46,8 @@ const Burger: React.FC<BurgerProps> = ({ showBurgerMenu, setShowBurgerMenu }: Bu
       <div
         data-testid="burger"
         className="navigation-burger"
-        onClick={() => setShowBurgerMenu(!showBurgerMenu)}>
+        onClick={() => setShowBurgerMenu(!showBurgerMenu)}
+      >
         <span id="line-one" />
         <span id="line-two" />
         <span id="line-three" />

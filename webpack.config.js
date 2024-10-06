@@ -14,11 +14,13 @@ module.exports = {
     alias: {
       '@components': path.resolve(__dirname, 'src/components'),
       '@sections': path.resolve(__dirname, 'src/sections'),
-      '@assets': path.resolve(__dirname, 'src/assets')
-    },
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@utils': path.resolve(__dirname, 'src/utils')
+    }
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: 'babel-loader'
@@ -29,8 +31,8 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
-        type: "asset",
-      },
+        type: 'asset'
+      }
     ]
   },
   plugins: [
@@ -38,10 +40,12 @@ module.exports = {
       template: './src/index.html'
     }),
     new CopyWebPackPlugin({
-      patterns: [{
-        from: 'src/assets',
-        to: 'assets'
-      }]
-    }),
+      patterns: [
+        {
+          from: 'src/assets',
+          to: 'assets'
+        }
+      ]
+    })
   ]
 };

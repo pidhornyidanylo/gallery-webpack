@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 
 describe('Arrow icon', () => {
   it('renders properly', () => {
-    render(<ArrowIcon />);
+    render(<ArrowIcon type={'hero'} />);
     const spinningText = screen.getByText(
       /scroll down \. scroll down \. scroll down \. scroll down \./i
     );

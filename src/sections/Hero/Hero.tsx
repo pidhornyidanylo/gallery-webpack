@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
     <section id="hero">
       <div data-testid="hero-banner" className="hero-banner" />
       <img src={HyperrealismIcon} width="100%" alt="hyperrealism" />
-      <ArrowIcon />
+      <ArrowIcon type="hero" />
     </section>
   );
 };

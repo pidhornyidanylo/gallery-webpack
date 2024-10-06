@@ -16,7 +16,7 @@ describe('Burger component', () => {
     const burger = screen.getByTestId('burger');
     expect(burger).toBeInTheDocument();
     const menu = screen.queryByRole('list');
-    expect(menu).toHaveClass('show'); 
+    expect(menu).toHaveClass('show');
   });
   it('shows menu when burger is clicked', () => {
     const setShowBurgerMenu = jest.fn();

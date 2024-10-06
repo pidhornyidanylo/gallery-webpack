@@ -1,97 +1,94 @@
 header {
-    top: 0;
-    width: 100%;
-    padding: 20px 20px 20px;
-    position: fixed;
-    z-index: 100;
+  top: 0;
+  width: 100%;
+  padding: 20px 20px 0px;
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  .logo-container {
+    min-height: 70px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
 
-    .logo-container {
-        min-height: 70px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        .header-logo {
-            font-family: 'Bon Foyage DEMO', sans-serif;
-            color: white;
-            font-size: 3em;
-        }
-
-        .header-routes {
-            font-size: 1.2em;
-            font-weight: lighter;
-            line-height: 133%;
-        }
+    .header-logo {
+      font-family: 'Bon Foyage DEMO', sans-serif;
+      color: white;
+      font-size: 3em;
     }
 
-    .header-navigation {
-        position: relative;
-        display: flex;
-        align-items: start;
-
-        .navigation-list {
-            padding: 0;
-            margin: 0;
-            list-style-type: none;
-            display: flex;
-            gap: 40px;
-
-            li {
-                a {
-                    transition: font-weight .3s ease;
-                    font-size: 1.2em;
-                    font-weight: lighter;
-                    -webkit-transition: font-weight .3s ease;
-                    -moz-transition: font-weight .3s ease;
-                    -ms-transition: font-weight .3s ease;
-                    -o-transition: font-weight .3s ease;
-
-                    &:hover {
-                        font-weight: 600;
-                    }
-                }
-            }
-        }
+    .header-routes {
+      font-size: 1.2em;
+      font-weight: lighter;
+      color: white;
+      line-height: 133%;
     }
+  }
+
+  .header-navigation {
+    position: relative;
+    display: flex;
+    align-items: start;
+
+    .navigation-list {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      display: flex;
+      gap: 40px;
+
+      li {
+        a {
+          font-weight: 300;
+          font-size: 1.2em;
+          font-weight: lighter;
+
+          &:hover {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 576px) {
-    header {
-        .logo-container {
-            justify-content: center;
+  header {
+    .logo-container {
+      justify-content: center;
 
-            .header-logo {
-                font-size: 2.5em;
-            }
+      .header-logo {
+        font-size: 2.5em;
+      }
 
-            .header-routes {
-                display: none;
-            }
-        }
-
-        .header-navigation {
-            position: relative;
-            display: flex;
-            align-items: start;
-
-            .navigation-list {
-                padding: 0;
-                margin: 0;
-                list-style-type: none;
-                display: flex;
-                gap: 40px;
-
-                li {
-                    a {
-                        font-size: 1.2em;
-                        font-weight: lighter;
-                    }
-                }
-            }
-        }
+      .header-routes {
+        display: none;
+      }
     }
+
+    .header-navigation {
+      position: relative;
+      display: flex;
+      align-items: start;
+
+      .navigation-list {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        display: flex;
+        gap: 40px;
+
+        li {
+          a {
+            font-size: 1.2em;
+            font-weight: 300;
+          }
+        }
+      }
+    }
+  }
 }

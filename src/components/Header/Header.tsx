@@ -16,7 +16,7 @@ const Header: React.FC = () => {
       });
     } else {
       gsap.to('.header', {
-        padding: '20px 20px 20px',
+        padding: '20px 20px 0px',
         duration: 0.1,
         delay: 2
       });
