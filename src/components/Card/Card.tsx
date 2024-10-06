@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArtistType } from '@sections/Content/Content';
 import ArrowIcon from '@components/ArrowIcon/ArrowIcon';
 import { getBlackCharsWidth } from '@utils/getBlackCharsWidth';
@@ -6,10 +6,13 @@ import { useCheckOverlap } from '@utils/checkOverlap';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Card.scss';
+import Modal from '@components/Modal/Modal';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Card = ({ artist }: { artist: ArtistType }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [hideCard, setHideCard] = useState(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const firstNameCharsRef = useRef<HTMLSpanElement[] | null[]>([]);
   const secondNameCharsRef = useRef<HTMLSpanElement[] | null[]>([]);
@@ -50,8 +53,7 @@ const Card = ({ artist }: { artist: ArtistType }) => {
           trigger: imageRef.current,
           scrub: 0.4,
           start: '-380px bottom',
-          end: 'center top',
-          markers: true
+          end: 'center top'
         },
         bottom: '20px'
       });
@@ -104,7 +106,16 @@ const Card = ({ artist }: { artist: ArtistType }) => {
           ))}
         </h3>
       </div>
-      <ArrowIcon type="content" />
+      <div onClick={() => setShowModal(true)}>
+        <ArrowIcon type="content" />
+      </div>
+      <Modal
+        layout={showModal}
+        setLayout={setShowModal}
+        setHideSection={setHideCard}
+        artistWorks={artist.artworks}
+        artistName={artist.name.first + ' ' + artist.name.second}
+      />
     </div>
   );
 };

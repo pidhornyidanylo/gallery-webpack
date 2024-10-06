@@ -25,7 +25,7 @@ const Content: React.FC = () => {
           gsap.to(card, {
             scrollTrigger: {
               trigger: card,
-              start: 'top top',
+              start: '-25px top',
               end: 'bottom top',
               scrub: 1,
               pin: true,
@@ -42,7 +42,7 @@ const Content: React.FC = () => {
               end: 'bottom top',
               scrub: 1
             },
-            y: -200
+            y: 0
           });
         });
       } else {

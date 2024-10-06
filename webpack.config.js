@@ -10,7 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.tsx', '.js', '.scss', '.svg'],
+    extensions: ['.tsx', '.ts', '.js', '.scss', '.svg', '.css'],
     alias: {
       '@components': path.resolve(__dirname, 'src/components'),
       '@sections': path.resolve(__dirname, 'src/sections'),
@@ -28,6 +28,10 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
