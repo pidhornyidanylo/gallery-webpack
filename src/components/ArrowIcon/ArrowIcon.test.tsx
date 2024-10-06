@@ -11,4 +11,9 @@ describe('Arrow icon', () => {
     );
     expect(spinningText).toBeInTheDocument();
   });
+  it('renders properly', () => {
+    render(<ArrowIcon type={'content'} />);
+    const spinningText = screen.getByTestId('angled-arrow');
+    expect(spinningText).toBeInTheDocument();
+  });
 });

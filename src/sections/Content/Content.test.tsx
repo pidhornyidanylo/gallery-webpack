@@ -1,7 +1,24 @@
 import '@testing-library/jest-dom';
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Content from './Content';
+import React from 'react';
+
+jest.mock('gsap', () => {
+  const originalGsap = jest.requireActual('gsap');
+  return {
+    ...originalGsap,
+    registerPlugin: jest.fn(),
+    to: jest.fn()
+  };
+});
+
+jest.mock('gsap/ScrollTrigger', () => ({
+  ScrollTrigger: {
+    create: jest.fn().mockReturnValue({
+      kill: jest.fn()
+    })
+  }
+}));
 
 describe('Content component', () => {
   it('renders section properly', () => {

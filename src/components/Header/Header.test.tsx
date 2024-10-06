@@ -4,6 +4,11 @@ import Header from './Header';
 import React from 'react';
 
 describe('Header component', () => {
+  it('should render header', () => {
+    render(<Header />);
+    const header = screen.getByRole('banner');
+    expect(header).toBeInTheDocument();
+  });
   it('renders logo', () => {
     render(<Header />);
     const logo = screen.getByRole('heading', {

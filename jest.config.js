@@ -1,9 +1,10 @@
 module.exports = {
+  preset: 'ts-jest/presets/js-with-ts',
+  transformIgnorePatterns: ['node_modules/(?!gsap)'],
   roots: ['<rootDir>/src'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   },
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   moduleNameMapper: {
     '\\.(css|less|scss)$': 'jest-transform-stub',

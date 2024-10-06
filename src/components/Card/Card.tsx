@@ -1,11 +1,11 @@
+import React, { useEffect, useRef } from 'react';
 import { ArtistType } from '@sections/Content/Content';
-import React, { useEffect, useRef, useCallback, useState } from 'react';
 import ArrowIcon from '@components/ArrowIcon/ArrowIcon';
+import { getBlackCharsWidth } from '@utils/getBlackCharsWidth';
+import { useCheckOverlap } from '@utils/checkOverlap';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { getBlackCharsWidth } from '../../utils/getBlackCharsWidth';
 import './Card.scss';
-import { useCheckOverlap } from '../../utils/checkOverlap';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,38 +22,40 @@ const Card = ({ artist }: { artist: ArtistType }) => {
 
   useEffect(() => {
     const blackChars = getBlackCharsWidth(firstNameCharsRef, secondNameCharsRef);
-    gsap.to(firstNameRef.current, {
-      left:
-        -firstNameRef.current!.getBoundingClientRect().width +
-        blackChars.totalWidthOfTheFirstNameBlackChars -
-        firstNameAllowableDeviation
-    });
-    gsap.to(firstNameRef.current, {
-      scrollTrigger: {
-        trigger: imageRef.current,
-        scrub: 0.4,
-        start: '-380px bottom',
-        end: 'center top'
-      },
-      top: '20px'
-    });
-    gsap.to(secondNameRef.current, {
-      right:
-        -(
-          secondNameRef.current!.getBoundingClientRect().width -
-          blackChars.totalWidthOfTheSecondNameBlackChars
-        ) - secondNameAllowableDeviation
-    });
-    gsap.to(secondNameRef.current, {
-      scrollTrigger: {
-        trigger: imageRef.current,
-        scrub: 0.4,
-        start: '-380px bottom',
-        end: 'center top',
-        markers: true
-      },
-      bottom: '20px'
-    });
+    if (typeof window !== 'undefined') {
+      gsap.to(firstNameRef.current, {
+        left:
+          -firstNameRef.current!.getBoundingClientRect().width +
+          blackChars.totalWidthOfTheFirstNameBlackChars -
+          firstNameAllowableDeviation
+      });
+      gsap.to(firstNameRef.current, {
+        scrollTrigger: {
+          trigger: imageRef.current,
+          scrub: 0.4,
+          start: '-380px bottom',
+          end: 'center top'
+        },
+        top: '20px'
+      });
+      gsap.to(secondNameRef.current, {
+        right:
+          -(
+            secondNameRef.current!.getBoundingClientRect().width -
+            blackChars.totalWidthOfTheSecondNameBlackChars
+          ) - secondNameAllowableDeviation
+      });
+      gsap.to(secondNameRef.current, {
+        scrollTrigger: {
+          trigger: imageRef.current,
+          scrub: 0.4,
+          start: '-380px bottom',
+          end: 'center top',
+          markers: true
+        },
+        bottom: '20px'
+      });
+    }
   }, []);
 
   useEffect(() => {

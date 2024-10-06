@@ -1,25 +1,28 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
 import gsap from 'gsap';
 import Burger from '../Burger/Burger';
 import './Header.scss';
 
 const Header: React.FC = () => {
+  const headerRef = useRef<HTMLHeadingElement | null>(null);
   const [showBurger, setShowBurger] = useState(false);
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
   useEffect(() => {
-    if (showBurgerMenu) {
-      gsap.to('.header', {
-        duration: 0.5,
-        padding: '20px 20px 50px'
-      });
-    } else {
-      gsap.to('.header', {
-        padding: '20px 20px 0px',
-        duration: 0.1,
-        delay: 2
-      });
+    if (headerRef.current) {
+      if (showBurgerMenu) {
+        gsap.to('.header', {
+          duration: 0.5,
+          padding: '20px 20px 50px'
+        });
+      } else {
+        gsap.to('.header', {
+          padding: '20px 20px 0px',
+          duration: 0.1,
+          delay: 2
+        });
+      }
     }
   }, [showBurgerMenu]);
 
@@ -34,7 +37,7 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <div className="logo-container">
         <h3 className="header-logo">Gallery</h3>
         <p className="header-routes">

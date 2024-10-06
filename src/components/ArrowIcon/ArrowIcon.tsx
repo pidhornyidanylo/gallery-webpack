@@ -46,7 +46,7 @@ const ArrowIcon: React.FC<ArrowIconProps> = ({ type }: ArrowIconProps) => {
     );
   } else {
     return (
-      <div className="circleContainerAngled">
+      <div className="circleContainerAngled" data-testid='angled-arrow'>
         <svg
           width="180"
           height="180"
