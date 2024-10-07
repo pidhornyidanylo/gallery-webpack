@@ -78,3 +78,21 @@
     -o-transform: translate(-50%, -50%);
   }
 }
+
+@media (max-width: 1600px) {
+  .circleContainerAngled {
+    right: -100px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .circleContainerAngled {
+    right: 0px;
+  }
+}
+
+@media (max-width: 991px) {
+  .circleContainerAngled {
+    // position: relative;
+  }
+}

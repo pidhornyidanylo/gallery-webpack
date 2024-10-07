@@ -3,6 +3,18 @@ import { render, screen } from '@testing-library/react';
 import Content from './Content';
 import React from 'react';
 
+beforeAll(() => {
+  window.matchMedia =
+    window.matchMedia ||
+    function () {
+      return {
+        matches: false,
+        addListener: function () {},
+        removeListener: function () {}
+      };
+    };
+});
+
 jest.mock('swiper/react', () => ({
   Swiper: () => null,
   SwiperSlide: () => null
@@ -17,7 +29,8 @@ jest.mock('gsap', () => {
   return {
     ...originalGsap,
     registerPlugin: jest.fn(),
-    to: jest.fn()
+    to: jest.fn(),
+    matchMedia: jest.fn()
   };
 });
 

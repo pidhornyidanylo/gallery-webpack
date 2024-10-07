@@ -1,7 +1,19 @@
 import '@testing-library/jest-dom';
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import Card from './Card';
+
+beforeAll(() => {
+  window.matchMedia =
+    window.matchMedia ||
+    function () {
+      return {
+        matches: false,
+        addListener: function () {},
+        removeListener: function () {}
+      };
+    };
+});
 
 jest.mock('swiper/react', () => ({
   Swiper: () => null,
@@ -29,6 +41,8 @@ jest.mock('gsap/ScrollTrigger', () => ({
   }
 }));
 
+afterEach(cleanup);
+
 describe('Card component', () => {
   it('renders first name properly', () => {
     render(
@@ -47,6 +61,7 @@ describe('Card component', () => {
       name: /m o c k/i
     });
     expect(heading).toBeInTheDocument();
+    cleanup();
   });
   it('renders second name properly', () => {
     render(
@@ -65,6 +80,7 @@ describe('Card component', () => {
       name: /a r t i s t/i
     });
     expect(heading).toBeInTheDocument();
+    cleanup();
   });
   it('opens modal after clicking button and renders a name', () => {
     render(
@@ -91,7 +107,10 @@ describe('Card component', () => {
     const spinningText = screen.getByTestId('angled-arrow');
     expect(spinningText).toBeInTheDocument();
     fireEvent.click(spinningText);
-    const artistsNameInModal = screen.getByText(/stanley tester/i);
-    expect(artistsNameInModal).toBeInTheDocument();
+    const artistsNameInModal = screen.getAllByText(/stanley tester/i);
+    artistsNameInModal.find((nameElement) => {
+      nameElement.classList.contains('artist-name') &&
+        expect(nameElement).toHaveClass('artist-name');
+    });
   });
 });
