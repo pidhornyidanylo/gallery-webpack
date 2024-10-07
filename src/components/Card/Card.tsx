@@ -131,7 +131,8 @@ const Card = ({ artist }: { artist: ArtistType }) => {
   return (
     <div
       data-testid="artist-card-container"
-      className={hideCard ? 'artist-card-hide' : 'artist-card'}>
+      className={hideCard ? 'artist-card-hide' : 'artist-card'}
+    >
       <div className="artist-card-innerContainer">
         {showResponsiveName && (
           <h2 className="artist-name-responsive">{artist.name.first + ' ' + artist.name.second}</h2>
@@ -147,7 +148,8 @@ const Card = ({ artist }: { artist: ArtistType }) => {
             <span
               key={i}
               ref={(el) => (firstNameCharsRef!.current[i] = el)}
-              className="char char-first-name">
+              className="char char-first-name"
+            >
               {char}
             </span>
           ))}
@@ -158,7 +160,8 @@ const Card = ({ artist }: { artist: ArtistType }) => {
             <span
               key={i}
               ref={(el) => (secondNameCharsRef!.current[i] = el)}
-              className="char char-second-name">
+              className="char char-second-name"
+            >
               {char}
             </span>
           ))}
@@ -174,7 +177,8 @@ const Card = ({ artist }: { artist: ArtistType }) => {
         onClick={() => {
           setHideCard(true);
           setShowModal(true);
-        }}>
+        }}
+      >
         <ArrowIcon type="content" />
       </div>
       <Modal

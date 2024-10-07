@@ -27,7 +27,8 @@ const Socials: React.FC<SocialsProps> = ({
             setHideCard(true);
             setShowModal(true);
           }}
-          data-testid="artworks-button">
+          data-testid="artworks-button"
+        >
           <img src={artworks} alt="artworks" />
         </div>
       )}
