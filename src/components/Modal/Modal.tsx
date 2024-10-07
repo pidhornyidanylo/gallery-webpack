@@ -77,7 +77,8 @@ const Modal: React.FC<LayoutModalDialogProps> = ({
         onClose={() => {
           setHideSection(false);
           setLayout(false);
-        }}>
+        }}
+      >
         <ModalDialog
           layout="fullscreen"
           sx={{
@@ -87,7 +88,8 @@ const Modal: React.FC<LayoutModalDialogProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
-          }}>
+          }}
+        >
           <button className="modal-buttonClose" onClick={() => setLayout(false)}>
             <img src={modalClose} alt="modal-close" />
           </button>
@@ -99,7 +101,8 @@ const Modal: React.FC<LayoutModalDialogProps> = ({
               alignItems: 'center',
               gap: '40px',
               justifyContent: 'space-between'
-            }}>
+            }}
+          >
             {showName && <div className="artist-name">{artistName}</div>}
             <Swiper
               slidesPerView={changeSlider ? 1 : 4}
@@ -109,7 +112,8 @@ const Modal: React.FC<LayoutModalDialogProps> = ({
               mousewheel={true}
               onSwiper={setSwiperInstance}
               modules={[Mousewheel]}
-              className="mySwiper">
+              className="mySwiper"
+            >
               {artistWorks.map((aWork, index) => (
                 <SwiperSlide key={aWork}>
                   <img src={aWork} alt={`artworkimage${index}`} />

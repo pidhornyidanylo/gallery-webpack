@@ -89,7 +89,8 @@ const Card = ({ artist }: { artist: ArtistType }) => {
             <span
               key={i}
               ref={(el) => (firstNameCharsRef!.current[i] = el)}
-              className="char char-first-name">
+              className="char char-first-name"
+            >
               {char}
             </span>
           ))}
@@ -100,7 +101,8 @@ const Card = ({ artist }: { artist: ArtistType }) => {
             <span
               key={i}
               ref={(el) => (secondNameCharsRef!.current[i] = el)}
-              className="char char-second-name">
+              className="char char-second-name"
+            >
               {char}
             </span>
           ))}
