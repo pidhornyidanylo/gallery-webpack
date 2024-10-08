@@ -48,7 +48,9 @@ const Content: React.FC = () => {
       } else {
         throw new Error();
       }
+      ScrollTrigger.refresh();
     }
+    window.history.scrollRestoration = 'manual';
   }, []);
 
   return (

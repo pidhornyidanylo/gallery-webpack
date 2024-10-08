@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Card.scss';
 import Modal from '@components/Modal/Modal';
 import Socials from '@components/Socials/Socials';
+import { debounce } from '@utils/debounce';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +21,7 @@ const Card = ({ artist }: { artist: ArtistType }) => {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const firstNameCharsRef = useRef<HTMLSpanElement[] | null[]>([]);
   const secondNameCharsRef = useRef<HTMLSpanElement[] | null[]>([]);
+  const artistCardContainerRef = useRef<HTMLDivElement | null>(null);
   const firstNameRef = useRef<HTMLHeadingElement | null>(null);
   const secondNameRef = useRef<HTMLHeadingElement | null>(null);
   const overlap1 = useCheckOverlap(imageRef, firstNameCharsRef);
@@ -28,6 +30,7 @@ const Card = ({ artist }: { artist: ArtistType }) => {
   const secondNameAllowableDeviation = 4;
 
   useEffect(() => {
+    const container = artistCardContainerRef.current;
     const handleResize = () => {
       if (window.innerWidth < 1600) {
         setBlackCharsCount(4);
@@ -44,65 +47,68 @@ const Card = ({ artist }: { artist: ArtistType }) => {
       } else {
         setBlackCharsCount(3);
       }
+      const matchMedia = gsap.matchMedia();
+
+      matchMedia.add('(min-width: 1300px)', () => {
+        const blackChars = getBlackCharsWidth(
+          firstNameCharsRef,
+          blackCharsCount,
+          secondNameCharsRef
+        );
+
+        if (firstNameRef.current && secondNameRef.current && imageRef.current) {
+          const firstNameAnim = gsap.to(firstNameRef.current, {
+            left:
+              -firstNameRef.current.getBoundingClientRect().width +
+              blackChars.totalWidthOfTheFirstNameBlackChars -
+              firstNameAllowableDeviation
+          });
+          const secondNameAnim = gsap.to(secondNameRef.current, {
+            right:
+              -(
+                secondNameRef.current.getBoundingClientRect().width -
+                blackChars.totalWidthOfTheSecondNameBlackChars
+              ) - secondNameAllowableDeviation
+          });
+
+          const scrollTrigger1 = gsap.to(firstNameRef.current, {
+            scrollTrigger: {
+              trigger: imageRef.current,
+              scrub: 0.4,
+              start: '-380px bottom',
+              end: 'center top'
+            },
+            top: '20px'
+          });
+
+          const scrollTrigger2 = gsap.to(secondNameRef.current, {
+            scrollTrigger: {
+              trigger: imageRef.current,
+              scrub: 0.4,
+              start: '-380px bottom',
+              end: 'center top'
+            },
+            bottom: '20px'
+          });
+
+          return () => {
+            firstNameAnim.kill();
+            secondNameAnim.kill();
+            scrollTrigger1.kill();
+            scrollTrigger2.kill();
+          };
+        }
+      });
+      return () => matchMedia.revert();
     };
-
-    const matchMedia = gsap.matchMedia();
-
-    matchMedia.add('(min-width: 1300px)', () => {
-      const blackChars = getBlackCharsWidth(firstNameCharsRef, blackCharsCount, secondNameCharsRef);
-
-      if (firstNameRef.current && secondNameRef.current && imageRef.current) {
-        const firstNameAnim = gsap.to(firstNameRef.current, {
-          left:
-            -firstNameRef.current.getBoundingClientRect().width +
-            blackChars.totalWidthOfTheFirstNameBlackChars -
-            firstNameAllowableDeviation
-        });
-        const secondNameAnim = gsap.to(secondNameRef.current, {
-          right:
-            -(
-              secondNameRef.current.getBoundingClientRect().width -
-              blackChars.totalWidthOfTheSecondNameBlackChars
-            ) - secondNameAllowableDeviation
-        });
-
-        const scrollTrigger1 = gsap.to(firstNameRef.current, {
-          scrollTrigger: {
-            trigger: imageRef.current,
-            scrub: 0.4,
-            start: '-380px bottom',
-            end: 'center top'
-          },
-          top: '20px'
-        });
-
-        const scrollTrigger2 = gsap.to(secondNameRef.current, {
-          scrollTrigger: {
-            trigger: imageRef.current,
-            scrub: 0.4,
-            start: '-380px bottom',
-            end: 'center top'
-          },
-          bottom: '20px'
-        });
-
-        return () => {
-          firstNameAnim.kill();
-          secondNameAnim.kill();
-          scrollTrigger1.kill();
-          scrollTrigger2.kill();
-        };
-      }
-    });
-
     handleResize();
-    window.addEventListener('resize', handleResize);
-
+    window.addEventListener('resize', debounce(handleResize, 2000));
+    container!.addEventListener('mousemove', debounce(handleResize, 3500));
     return () => {
-      window.removeEventListener('resize', handleResize);
-      matchMedia.revert();
+      window.removeEventListener('resize', debounce(handleResize, 2000));
+      container!.addEventListener('mousemove', debounce(handleResize, 3500));
     };
-  }, [blackCharsCount]);
+  });
 
   useEffect(() => {
     const matchMedia = gsap.matchMedia();
@@ -130,9 +136,9 @@ const Card = ({ artist }: { artist: ArtistType }) => {
 
   return (
     <div
+      ref={artistCardContainerRef}
       data-testid="artist-card-container"
-      className={hideCard ? 'artist-card-hide' : 'artist-card'}
-    >
+      className={hideCard ? 'artist-card-hide' : 'artist-card'}>
       <div className="artist-card-innerContainer">
         {showResponsiveName && (
           <h2 className="artist-name-responsive">{artist.name.first + ' ' + artist.name.second}</h2>
@@ -148,8 +154,7 @@ const Card = ({ artist }: { artist: ArtistType }) => {
             <span
               key={i}
               ref={(el) => (firstNameCharsRef!.current[i] = el)}
-              className="char char-first-name"
-            >
+              className="char char-first-name">
               {char}
             </span>
           ))}
@@ -160,8 +165,7 @@ const Card = ({ artist }: { artist: ArtistType }) => {
             <span
               key={i}
               ref={(el) => (secondNameCharsRef!.current[i] = el)}
-              className="char char-second-name"
-            >
+              className="char char-second-name">
               {char}
             </span>
           ))}
@@ -177,8 +181,7 @@ const Card = ({ artist }: { artist: ArtistType }) => {
         onClick={() => {
           setHideCard(true);
           setShowModal(true);
-        }}
-      >
+        }}>
         <ArrowIcon type="content" />
       </div>
       <Modal
