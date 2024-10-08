@@ -7,6 +7,8 @@ import './Content.scss';
 
 gsap.registerPlugin(ScrollTrigger);
 
+window.history.scrollRestoration = 'manual';
+
 export type ArtistType = {
   name: {
     first: string;
@@ -50,7 +52,6 @@ const Content: React.FC = () => {
       }
       ScrollTrigger.refresh();
     }
-    window.history.scrollRestoration = 'manual';
   }, []);
 
   return (
