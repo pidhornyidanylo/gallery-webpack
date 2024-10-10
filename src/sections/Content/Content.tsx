@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Content.scss';
 
 gsap.registerPlugin(ScrollTrigger);
-window.history.scrollRestoration = 'manual';
 
 export type ArtistType = {
   name: {
@@ -25,7 +24,7 @@ const Content: React.FC = () => {
       gsap.to(card, {
         scrollTrigger: {
           trigger: card,
-          start: '-25px top',
+          start: 'top top',
           end: 'bottom top',
           scrub: 0.5,
           pin: true,
