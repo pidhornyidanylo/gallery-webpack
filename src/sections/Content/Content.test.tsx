@@ -38,7 +38,8 @@ jest.mock('gsap/ScrollTrigger', () => ({
   ScrollTrigger: {
     create: jest.fn().mockReturnValue({
       kill: jest.fn()
-    })
+    }),
+    refresh: jest.fn()
   }
 }));
 

@@ -87,12 +87,6 @@
 
 @media (max-width: 1300px) {
   .circleContainerAngled {
-    right: 0px;
-  }
-}
-
-@media (max-width: 991px) {
-  .circleContainerAngled {
-    // position: relative;
+    display: none;
   }
 }

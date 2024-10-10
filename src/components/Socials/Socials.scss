@@ -36,10 +36,31 @@
       -webkit-filter: brightness(0.1) contrast(1.2) saturate(0) invert(1);
     }
   }
-  div {
-    width: 65px;
-    height: 65px;
-    display: flex;
-    align-items: center;
+
+  .modal-button {
+    display: none;
+
+    img {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .social-container {
+    .modal-button {
+      width: 65px;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display: block;
+      transition-behavior: allow-discrete;
+
+      img {
+        padding-top: 15px;
+        display: block;
+      }
+    }
   }
 }

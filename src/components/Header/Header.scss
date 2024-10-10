@@ -45,10 +45,15 @@ header {
         a {
           font-weight: 300;
           font-size: 1.2em;
-          font-weight: lighter;
+          transition: font-weight 1s ease;
+          transition-behavior: allow-discrete;
+          -webkit-transition: font-weight 1s ease;
+          -moz-transition: font-weight 1s ease;
+          -ms-transition: font-weight 1s ease;
+          -o-transition: font-weight 1s ease;
 
           &:hover {
-            font-weight: 600;
+            font-weight: 800;
           }
         }
       }

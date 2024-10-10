@@ -6,32 +6,26 @@ import artworks from '@assets/content/artworks.svg';
 import './Socials.scss';
 
 type SocialsProps = {
-  showModalButton: boolean;
   setHideCard: Dispatch<SetStateAction<boolean>>;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const Socials: React.FC<SocialsProps> = ({
-  showModalButton,
-  setHideCard,
-  setShowModal
-}: SocialsProps) => {
+const Socials: React.FC<SocialsProps> = ({ setHideCard, setShowModal }: SocialsProps) => {
   return (
     <div className="social-container">
       <img data-testid="x-test-icon" src={x} alt="x" />
       <img src={instagram} alt="instagram" />
       <img src={facebook} alt="facebook" />
-      {showModalButton && (
-        <div
-          onClick={() => {
-            setHideCard(true);
-            setShowModal(true);
-          }}
-          data-testid="artworks-button"
-        >
-          <img src={artworks} alt="artworks" />
-        </div>
-      )}
+      <div
+        className="modal-button"
+        onClick={() => {
+          setHideCard(true);
+          setShowModal(true);
+        }}
+        data-testid="artworks-button"
+      >
+        <img src={artworks} alt="artworks" />
+      </div>
     </div>
   );
 };

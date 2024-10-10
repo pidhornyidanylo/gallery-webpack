@@ -20,38 +20,31 @@ export type ArtistType = {
 const Content: React.FC = () => {
   const contentRef = useRef<HTMLElement | null>(null);
   useEffect(() => {
-    if (typeof window !== 'undefined' && contentRef.current) {
-      const cards = document.querySelectorAll('.artist-slide');
-      if (cards && cards.length > 0) {
-        cards.forEach((card) => {
-          gsap.to(card, {
-            scrollTrigger: {
-              trigger: card,
-              start: '-25px top',
-              end: 'bottom top',
-              scrub: 1,
-              pin: true,
-              pinSpacing: false
-            },
-            scale: 0.8,
-            opacity: 0
-          });
+    const cards = document.querySelectorAll('.artist-slide');
+    cards.forEach((card) => {
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: '-25px top',
+          end: 'bottom top',
+          scrub: 0.5,
+          pin: true,
+          pinSpacing: false
+        },
+        scale: 0.8,
+        opacity: 0
+      });
 
-          gsap.to(card, {
-            scrollTrigger: {
-              trigger: card,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1
-            },
-            y: 0
-          });
-        });
-      } else {
-        throw new Error();
-      }
-      ScrollTrigger.refresh();
-    }
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.5
+        },
+        y: 0
+      });
+    });
   }, []);
 
   return (
