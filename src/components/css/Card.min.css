@@ -1,0 +1,77 @@
+.artist-card {
+  position: relative;
+  margin-top: 22px;
+  width: 1000px;
+  min-height: 480px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.artist-card-hide {
+  opacity: 0;
+}
+.artist-card-innerContainer {
+  position: absolute;
+}
+.artist-card-innerContainer .artist-first {
+  font-size: 8em;
+  color: #fff;
+  position: absolute;
+  top: 200px;
+}
+.artist-card-innerContainer .artist-second {
+  font-size: 8em;
+  color: #fff;
+  position: absolute;
+  bottom: 200px;
+  right: 0;
+}
+.artist-card-innerContainer .artist-name-responsive {
+  display: none;
+}
+@media (max-width: 1600px) {
+  .artist-card {
+    width: 1000px;
+    min-height: 480px;
+  }
+}
+@media (max-width: 1300px) {
+  .artist-card {
+    width: 1000px;
+    min-height: 480px;
+  }
+  .artist-card-innerContainer .artist-first {
+    display: none;
+  }
+  .artist-card-innerContainer .artist-second {
+    display: none;
+  }
+  .artist-card-innerContainer .artist-name-responsive {
+    display: block;
+    position: relative;
+    color: #e9e9e9;
+    font-size: 2em;
+    margin-bottom: 15px;
+    text-align: right;
+  }
+}
+@media (max-width: 991px) {
+  .artworks-button {
+    display: none;
+  }
+}
+@media (max-width: 578px) {
+  .artist-card {
+    transform: scale(0.6);
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    -o-transform: scale(0.6);
+  }
+} /*# sourceMappingURL=Card.min.css.map */

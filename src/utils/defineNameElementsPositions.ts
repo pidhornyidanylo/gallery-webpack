@@ -27,11 +27,11 @@ export const defineNameElementsPositions = (
     scrollTrigger: {
       trigger: image,
       scrub: 0.4,
-      start: '-380px bottom',
+      start: '-300px bottom',
       invalidateOnRefresh: true,
       end: 'center top'
     },
-    top: '20px'
+    top: '30px'
   });
 
   gsap.to(secondName, {
@@ -39,9 +39,9 @@ export const defineNameElementsPositions = (
       trigger: image,
       scrub: 0.4,
       invalidateOnRefresh: true,
-      start: '-380px bottom',
+      start: '-300px bottom',
       end: 'center top'
     },
-    bottom: '20px'
+    bottom: '30px'
   });
 };

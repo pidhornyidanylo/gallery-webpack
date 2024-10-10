@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArtistType } from '@sections/Content/Content';
 import ArrowIcon from '@components/ArrowIcon/ArrowIcon';
 import { getBlackCharsWidth } from '@utils/getBlackCharsWidth';
-import { useCheckOverlap } from '@utils/checkOverlap';
+import { checkOverlap } from '@utils/checkOverlap';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Modal from '@components/Modal/Modal';
@@ -15,14 +15,13 @@ gsap.registerPlugin(ScrollTrigger);
 const Card = ({ artist }: { artist: ArtistType }) => {
   const [showModal, setShowModal] = useState(false);
   const [hideCard, setHideCard] = useState(false);
+
   const imageRef = useRef<HTMLImageElement | null>(null);
   const firstNameCharsRef = useRef<HTMLSpanElement[] | null[]>([]);
   const secondNameCharsRef = useRef<HTMLSpanElement[] | null[]>([]);
   const artistCardContainerRef = useRef<HTMLDivElement | null>(null);
   const firstNameRef = useRef<HTMLHeadingElement | null>(null);
   const secondNameRef = useRef<HTMLHeadingElement | null>(null);
-  const overlap1 = useCheckOverlap(imageRef, firstNameCharsRef);
-  const overlap2 = useCheckOverlap(imageRef, secondNameCharsRef);
 
   const isXLScreen = window.matchMedia('(min-width: 1300px)').matches;
 
@@ -30,7 +29,9 @@ const Card = ({ artist }: { artist: ArtistType }) => {
     const firstName = firstNameRef.current;
     const secondName = secondNameRef.current;
     const image = imageRef.current;
-    const blackChars = getBlackCharsWidth(firstNameCharsRef, 4, secondNameCharsRef);
+
+    const blackChars = getBlackCharsWidth(firstNameCharsRef.current, secondNameCharsRef.current);
+
     defineNameElementsPositions(firstName, secondName, image, blackChars);
   }, [firstNameRef, secondNameRef, imageRef, artistCardContainerRef]);
 
@@ -41,15 +42,15 @@ const Card = ({ artist }: { artist: ArtistType }) => {
         start: 'top bottom',
         end: 'bottom top',
         onUpdate: () => {
-          overlap1();
-          overlap2();
+          checkOverlap(imageRef, firstNameCharsRef);
+          checkOverlap(imageRef, secondNameCharsRef);
         }
       });
       return () => {
         scrollTrigger.kill();
       };
     }
-  }, [isXLScreen, overlap1, overlap2]);
+  }, [isXLScreen]);
 
   const handleShowArtworksButtonClick = () => {
     setHideCard(true);
