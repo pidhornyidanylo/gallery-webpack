@@ -13,13 +13,15 @@ const Header: React.FC = () => {
     if (headerRef.current) {
       if (showBurgerMenu) {
         gsap.to('.header', {
-          duration: 0.5,
-          padding: '20px 20px 50px'
+          backgroundColor: 'rgba(0, 0, 0, .95)',
+          height: '200px',
+          duration: 0.5
         });
       } else {
         gsap.to('.header', {
-          padding: '20px 20px 0px',
-          duration: 0.1,
+          backgroundColor: 'rgba(0, 0, 0, .8)',
+          height: '120px',
+          duration: 0.5,
           delay: 2
         });
       }

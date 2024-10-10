@@ -12,7 +12,7 @@ const Burger: React.FC<BurgerProps> = ({ showBurgerMenu, setShowBurgerMenu }: Bu
   useEffect(() => {
     const tl = gsap.timeline();
     if (showBurgerMenu) {
-      tl.to('#line-two', { opacity: 0, duration: 0.1 })
+      tl.to('#line-two', { opacity: 0, duration: 0.5, translateX: 20 })
         .to('#line-one', { rotate: 45, translateY: 10, duration: 0.4 })
         .to('#line-three', { rotate: -45, translateY: -12, duration: 0.4 })
         .to('.navigation-burger', { rotate: 360, translateX: -130 })
@@ -24,17 +24,17 @@ const Burger: React.FC<BurgerProps> = ({ showBurgerMenu, setShowBurgerMenu }: Bu
           stagger: 0.1
         });
     } else {
-      tl.to('#line-one', { rotate: 0, translateY: 0, duration: 0.4 })
-        .to('#line-three', { rotate: 0, translateY: 0, duration: 0.4 })
-        .to('#line-two', { opacity: 1, duration: 0.1 })
-        .to('.navigation-list-burger', { opacity: 0, duration: 0.4 })
-        .to('.navigation-burger', { rotate: 0, translateX: 0 })
+      tl.to('.navigation-list-burger', { opacity: 0, duration: 0.4 })
         .to('.navigation-list-burger li', {
           opacity: 0,
           translateX: 100,
-          duration: 0.5,
+          duration: 0.1,
           stagger: 0.1
-        });
+        })
+        .to('.navigation-burger', { rotate: 0, translateX: 0 })
+        .to('#line-one', { rotate: 0, translateY: 0, duration: 0.4 })
+        .to('#line-three', { rotate: 0, translateY: 0, duration: 0.4 })
+        .to('#line-two', { opacity: 1, duration: 0.1, translateX: 0 });
     }
 
     return () => {
@@ -46,8 +46,7 @@ const Burger: React.FC<BurgerProps> = ({ showBurgerMenu, setShowBurgerMenu }: Bu
       <div
         data-testid="burger"
         className="navigation-burger"
-        onClick={() => setShowBurgerMenu(!showBurgerMenu)}
-      >
+        onClick={() => setShowBurgerMenu(!showBurgerMenu)}>
         <span id="line-one" />
         <span id="line-two" />
         <span id="line-three" />

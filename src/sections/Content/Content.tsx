@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Content.scss';
 
 gsap.registerPlugin(ScrollTrigger);
-
 window.history.scrollRestoration = 'manual';
 
 export type ArtistType = {
@@ -19,6 +18,7 @@ export type ArtistType = {
 };
 const Content: React.FC = () => {
   const contentRef = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
     const cards = document.querySelectorAll('.artist-slide');
     cards.forEach((card) => {

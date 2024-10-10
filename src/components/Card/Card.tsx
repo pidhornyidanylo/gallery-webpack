@@ -57,7 +57,6 @@ const Card = ({ artist }: { artist: ArtistType }) => {
     setShowModal(true);
   };
 
-
   return (
     <div
       ref={artistCardContainerRef}
