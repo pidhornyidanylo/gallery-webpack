@@ -1,5 +1,4 @@
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { defineNameElementsPositions } from './defineNameElementsPositions';
 
 jest.mock('gsap', () => {
@@ -9,15 +8,6 @@ jest.mock('gsap', () => {
     to: jest.fn()
   };
 });
-
-jest.mock('gsap/ScrollTrigger', () => ({
-  ScrollTrigger: {
-    create: jest.fn().mockReturnValue({
-      kill: jest.fn()
-    }),
-    refresh: jest.fn()
-  }
-}));
 
 gsap.to = jest.fn();
 

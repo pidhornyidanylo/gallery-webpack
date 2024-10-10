@@ -83,3 +83,13 @@
     -o-transform: scale(0.6);
   }
 }
+
+@media(orientation: landscape) {
+  .artist-card {
+    transform: scale(0.4);
+    -webkit-transform: scale(0.4);
+    -moz-transform: scale(0.4);
+    -ms-transform: scale(0.4);
+    -o-transform: scale(0.4);
+  }
+}
