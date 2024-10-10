@@ -1,4 +1,3 @@
-const allowableNameElementDeviation = 4;
 import { gsap } from 'gsap';
 
 export const defineNameElementsPositions = (
@@ -10,6 +9,7 @@ export const defineNameElementsPositions = (
     totalWidthOfTheSecondNameBlackChars: number;
   }
 ): void => {
+  const allowableNameElementDeviation = 4;
   gsap.to(firstName, {
     left:
       -firstName!.getBoundingClientRect().width +

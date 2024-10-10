@@ -60,7 +60,7 @@ describe('checkOverlap function', () => {
       duration: 1.5
     });
     expect(gsap.to).toHaveBeenNthCalledWith(2, chars.current[1], {
-      color: 'black',
+      color: 'white',
       duration: 1.5
     });
   });
