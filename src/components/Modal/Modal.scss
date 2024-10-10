@@ -118,32 +118,3 @@
     font-size: 2em;
   }
 }
-
-@media(orientation: landscape) {
-  .swiper-slide img {
-    transform: scale(.6);
-    -webkit-transform: scale(.6);
-    -moz-transform: scale(.6);
-    -ms-transform: scale(.6);
-    -o-transform: scale(.6);
-  }
-
-  .artist-name {
-    position: absolute;
-    font-family: 'Bon Foyage DEMO', sans-serif;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    z-index: 1;
-    font-size: 1.5em;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    text-align: center;
-    color: #6e6e6e;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-  }
-}
