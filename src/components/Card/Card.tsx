@@ -57,12 +57,12 @@ const Card = ({ artist }: { artist: ArtistType }) => {
     setShowModal(true);
   };
 
+
   return (
     <div
       ref={artistCardContainerRef}
       data-testid="artist-card-container"
-      className={hideCard ? 'artist-card-hide' : 'artist-card'}
-    >
+      className={hideCard ? 'artist-card-hide' : 'artist-card'}>
       <div className="artist-card-innerContainer">
         <h2 className="artist-name-responsive">{artist.name.first + ' ' + artist.name.second}</h2>
         <img
@@ -76,8 +76,7 @@ const Card = ({ artist }: { artist: ArtistType }) => {
             <span
               key={i}
               ref={(el) => (firstNameCharsRef!.current[i] = el)}
-              className="char char-first-name"
-            >
+              className="char char-first-name">
               {char}
             </span>
           ))}
@@ -88,8 +87,7 @@ const Card = ({ artist }: { artist: ArtistType }) => {
             <span
               key={i}
               ref={(el) => (secondNameCharsRef!.current[i] = el)}
-              className="char char-second-name"
-            >
+              className="char char-second-name">
               {char}
             </span>
           ))}
