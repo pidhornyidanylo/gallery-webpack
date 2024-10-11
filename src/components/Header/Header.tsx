@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
-import gsap from 'gsap';
 import Burger from '../Burger/Burger';
 import './Header.scss';
 
@@ -8,25 +7,6 @@ const Header: React.FC = () => {
   const headerRef = useRef<HTMLHeadingElement | null>(null);
   const [showBurger, setShowBurger] = useState(false);
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
-
-  useEffect(() => {
-    if (headerRef.current) {
-      if (showBurgerMenu) {
-        gsap.to('.header', {
-          backgroundColor: 'rgba(0, 0, 0, .95)',
-          height: '200px',
-          duration: 0.5
-        });
-      } else {
-        gsap.to('.header', {
-          backgroundColor: 'rgba(0, 0, 0, .8)',
-          height: '120px',
-          duration: 0.5,
-          delay: 2
-        });
-      }
-    }
-  }, [showBurgerMenu]);
 
   useEffect(() => {
     const handleResize = () => {

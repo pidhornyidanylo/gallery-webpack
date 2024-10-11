@@ -3,6 +3,16 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Burger from './Burger';
 import React from 'react';
 
+jest.mock('gsap', () => {
+  const originalGsap = jest.requireActual('gsap');
+  return {
+    ...originalGsap,
+    registerPlugin: jest.fn(),
+    to: jest.fn(),
+    timeline: jest.fn()
+  };
+});
+
 describe('Burger component', () => {
   it('renders properly when menu has "hide" class', () => {
     render(<Burger showBurgerMenu={false} setShowBurgerMenu={() => {}} />);

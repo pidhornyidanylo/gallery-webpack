@@ -12,10 +12,15 @@ const Burger: React.FC<BurgerProps> = ({ showBurgerMenu, setShowBurgerMenu }: Bu
   useEffect(() => {
     const tl = gsap.timeline();
     if (showBurgerMenu) {
-      tl.to('#line-two', { opacity: 0, duration: 0.5, translateX: 20 })
+      tl.to('#line-two', { opacity: 0, duration: 0.05, translateX: 20 })
         .to('#line-one', { rotate: 45, translateY: 10, duration: 0.4 })
         .to('#line-three', { rotate: -45, translateY: -12, duration: 0.4 })
         .to('.navigation-burger', { rotate: 360, translateX: -130 })
+        .to('.header', {
+          backgroundColor: 'rgba(0, 0, 0, .95)',
+          height: '200px',
+          duration: 0.5
+        })
         .to('.navigation-list-burger', { opacity: 1, duration: 0.4 })
         .to('.navigation-list-burger li', {
           opacity: 1,
@@ -24,17 +29,22 @@ const Burger: React.FC<BurgerProps> = ({ showBurgerMenu, setShowBurgerMenu }: Bu
           stagger: 0.1
         });
     } else {
-      tl.to('.navigation-list-burger', { opacity: 0, duration: 0.4 })
+      tl.to('.navigation-list-burger', { opacity: 0, duration: 0.5 })
         .to('.navigation-list-burger li', {
           opacity: 0,
-          translateX: 100,
-          duration: 0.1,
-          stagger: 0.1
+          translateX: 200,
+          duration: 0.2,
+          stagger: 0.2
+        })
+        .to('.header', {
+          backgroundColor: 'rgba(0, 0, 0, .8)',
+          height: '120px',
+          duration: 0.2,
         })
         .to('.navigation-burger', { rotate: 0, translateX: 0 })
         .to('#line-one', { rotate: 0, translateY: 0, duration: 0.4 })
         .to('#line-three', { rotate: 0, translateY: 0, duration: 0.4 })
-        .to('#line-two', { opacity: 1, duration: 0.1, translateX: 0 });
+        .to('#line-two', { opacity: 1, duration: 0.05, translateX: 0 });
     }
 
     return () => {
